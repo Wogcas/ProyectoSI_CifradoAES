@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+}
+.form-registro{
+    width: 400px;
+    background:rgb(128, 99, 171);
+    padding: 30px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 10px;
+    font-family: 'calibri';
+    color: white;
+    box-shadow: 7px 13px 37px #35093e; /*sobra al box*/
+}
+
+.form-registro h4{
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.diseño{
+    width: 100%;
+    background: rgb(128, 99, 171);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    border: 2px solid rgba(255, 255, 255, .2);    
+    font-family: 'calibri';
+    color: white;
+    font-size: 15px;
+}
+
+.form-registro ::placeholder{
+    color: rgb(255, 255, 255);
+}
+
+.form-registro p{
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+}
+
+.form-registro a{
+    color: white;
+    text-decoration: none;
+}
+.form-registro a:hover{  /*cambia de color con el cursor*/
+    color: rgb(19, 22, 118);
+    text-decoration: underline;
+}
+
+.form-registro .botons{
+    width: 100%;
+    background: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    color: rgb(45, 6, 78);
+    margin: 16px 0;
+    font-family: "calibri black";
+    font-size: 18px;
+}
+

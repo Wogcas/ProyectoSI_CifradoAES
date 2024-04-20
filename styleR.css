@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 body {
     display: flex;
@@ -18,13 +18,12 @@ body {
     margin: auto;
     margin-top: 100px;
     border-radius: 10px;
-    font-family: 'calibri';
     color: white;
     box-shadow: 7px 13px 37px #35093e; /*sobra al box*/
 }
 
 .form-registro h4{
-    font-size: 22px;
+    font-size: 25px;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -54,6 +53,7 @@ body {
 
 .form-registro a{
     color: white;
+    font-size: 14.5px;
     text-decoration: none;
 }
 .form-registro a:hover{  /*cambia de color con el cursor*/
@@ -63,13 +63,15 @@ body {
 
 .form-registro .botons{
     width: 100%;
-    background: white;
+    height:45px;
+    background: #fff;
     border: none;
-    border-radius: 10px;
-    padding: 12px;
-    color: rgb(45, 6, 78);
-    margin: 16px 0;
-    font-family: "calibri black";
-    font-size: 18px;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: black;
+    font-weight: 600;
 }
 

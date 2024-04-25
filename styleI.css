@@ -74,3 +74,15 @@ footer {
 .nav__links li a:hover{
     color: #f4dbfe;
 }
+
+.separador{
+    display: flex;
+}
+
+.separacion{
+    margin: 0px 200px;
+}
+
+.centrado{
+    text-align: center;
+}

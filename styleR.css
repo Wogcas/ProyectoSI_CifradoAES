@@ -57,7 +57,7 @@ body {
     text-decoration: none;
 }
 .form-registro a:hover{  /*cambia de color con el cursor*/
-    color: rgb(19, 22, 118);
+    color: rgb(31, 84, 199);
     text-decoration: underline;
 }
 

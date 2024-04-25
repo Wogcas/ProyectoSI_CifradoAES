@@ -90,3 +90,7 @@ body {
     color: rgb(31, 84, 199);
     text-decoration: underline;
 }
+
+.centrado{
+    text-align: center;
+}

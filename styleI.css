@@ -80,9 +80,13 @@ footer {
 }
 
 .separacion{
-    margin: 0px 200px;
+    margin: 0px 250px;
 }
 
 .centrado{
     text-align: center;
 }
+
+.contrasenia {
+    margin-bottom: 20px; /* Espacio entre la sección de Contraseña y las secciones de Cifrar y Descifrar */
+  }

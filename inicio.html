@@ -1,78 +1,91 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Cifrado y Descifrado con AES</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='styleI.css'>
-    <script src='main.js'></script>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Cifrado y Descifrado con AES</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='styleI.css'>
+  <script src='main.js'></script>
 </head>
+
 <body>
-    <header>
-        <h1 class="logo">Cifrado AES</h1>
-        <nav>
-          <ul class="nav__links">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="register.html">Registrarse</a></li>
-            <li><a href="login.html">Iniciar Sesión</a></li>
-          </ul>
-        </nav>
-      </header>
+  <!-- Apartado de encabezados -->
+  <header>
+    <h1 class="logo">Cifrado AES</h1>
+    <nav>
+      <ul class="nav__links">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="register.html">Registrarse</a></li>
+        <li><a href="login.html">Iniciar Sesión</a></li>
+      </ul>
+    </nav>
+  </header>
+
+      <!--Apartado de contraseña -->
       <div class="separador">
         <div class="separacion2">
-        <h2 class="centrado">Contraseña:</h2>
-        <p>Ingrese la contraseña para poder realizar la encriptación o desencriptación.</p>
-        <div class="input-box">
-          <input type="text" placeholder="Contraseña" required>
-          <i class='bx bx-user'></i>
+            <h2 class="centrado">Contraseña:</h2>
+            <p>Ingrese la contraseña para poder realizar la encriptación o desencriptación.</p>
+            <div>
+                <input class="label" type="text" placeholder="Contraseña" required>
+            </div>
         </div>
+    </div>
+
+    <!-- Apartado de cifrar -->
+  <div class="separador">
+    <div class="separacion">
+      <h2 class="centrado">Cifrar</h2>
+      <p>
+        Ingrese el texto que desee cifrar:
+      </p>
+      <div>
+        <input class="label" type="text" placeholder="Texto a cifrar" required>
+        <i class='bx bx-user'></i>
       </div>
+      <button type="submit" class="btn">Cifrar</button>
+    </div>
+    
+    <!-- Apartado de decifrar -->
+    <div class="separacion">
+      <h2 class="centrado">Descifrar</h2>
+      <p>
+        Ingrese el texto que desee descifrar:
+      </p>
+      <div>
+        <input class="label" type="text" placeholder="Texto a descifrar" required>
+        <i class='bx bx-user'></i>
       </div>
-      <div class="separador">
-        <div class="separacion">
-          <h2 class="centrado">Cifrar</h2>
-          <p>
-            Ingrese el texto que desee cifrar:
-          </p>
-          <div class="input-box">
-            <input type="text" placeholder="Texto a cifrar" required>
-            <i class='bx bx-user'></i>
-          </div>
-          <button type="submit" class="btn">Cifrar</button>
-        </div>
-        <div class="separacion">
-          <h2 class="centrado">Descifrar</h2>
-          <p>
-            Ingrese el texto que desee descifrar:
-          </p>
-          <div class="input-box">
-            <input type="text" placeholder="Texto a descifrar" required>
-            <i class='bx bx-user'></i>
-          </div>
-          <button type="submit" class="btn">Descifrar</button>
-      </div>
-        </div>
-        <div class="separador">
-          <div class="separacion">
-            <p>
-              Resultado:
-            </p>
-            <textarea id="resultadoCifrar" readonly></textarea>
-          </div>
-          <div class="separacion">
-            <p>
-              Resultado:
-            </p>
-            <textarea id="resultadoDescifrar" readonly></textarea>
-          </div>
-        </div>
-      <footer>
-        <div class="footer-content">
-          <p>&copy; 2024 Cifrado AES. Todos los derechos reservados.</p>
-          <ul class="footer-links">
-          </ul>
-        </div>
-      </footer>
+      <button type="submit" class="btn">Descifrar</button>
+    </div>
+  </div>
+
+  <!-- Apartados de resultados de cifrado -->
+  <div class="separador">
+    <div class="separacion">
+      <p>
+        Resultado:
+      </p>
+      <textarea class="resultadoC" id="resultadoCifrar" readonly></textarea>
+    </div>
+
+    <!-- Resultado de apartado de resultados de decifrado -->
+    <div class="separacion">
+      <p>
+        Resultado:
+      </p>
+      <textarea class = "resultadoD" id="resultadoDescifrar" readonly></textarea>
+    </div>
+  </div>
+
+  <!-- Apartado de pie de pagina -->
+  <footer>   
+      <p class="text-center"><a href="https://i.pinimg.com/564x/82/59/95/8259952320fedccacae276ef0c8de0e5.jpg">&copy; 2024 Cifrado AES. Todos los derechos reservados.</a></p>
+      <ul class="footer-links">
+      </ul>
+  </footer>
+
 </body>
 </html>

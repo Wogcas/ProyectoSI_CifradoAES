@@ -50,7 +50,7 @@ li,a {
 /* Diseño pie de pagina */
 footer {
     background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: 40px;
@@ -97,6 +97,7 @@ footer {
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     text-align: center;
     margin: auto;
+    height: 40vh;
 }
 
 .separador p {
@@ -131,14 +132,15 @@ footer {
 }
 
 .separacion {
-    margin: 0px 350px;
-    margin-right: 50px;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
     
 }
 
 
 .separacion2 {
-    margin: 0px 550px;
+    margin: 0px 250px;
     
 
 }

@@ -7,7 +7,7 @@
   <title>Cifrado y Descifrado con AES</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <link rel='stylesheet' type='text/css' media='screen' href='styleI.css'>
-  <script src='main.js'></script>
+  <script src='inicio.js'></script>
 </head>
 
 <body>
@@ -30,7 +30,7 @@
             <p>Ingrese la contraseña para poder realizar</p>
           <p>la encriptación o desencriptación.</p>
             <div>
-                <input class="label" type="text" placeholder="Contraseña" required>
+                <input class="label" id="contraseñaCifrar" type="text" placeholder="Contraseña" required>
             </div>
         </div>
         <div class="separacion">
@@ -38,7 +38,7 @@
           <p>Ingrese la contraseña para poder realizar</p>
           <p>la encriptación o desencriptación.</p>
           <div>
-              <input class="label" type="text" placeholder="Contraseña" required>
+              <input class="label" id="contraseñaDescifrar" type="text" placeholder="Contraseña" required>
           </div>
       </div>
     </div>
@@ -52,10 +52,10 @@
         Ingrese el texto que desee cifrar:
       </p>
       <div>
-        <input class="label" type="text" placeholder="Texto a cifrar" required>
+        <input class="label" id="informacionCifrar" type="text" placeholder="Texto a cifrar" required>
         <i class='bx bx-user'></i>
       </div>
-      <button type="submit" class="btn">Cifrar</button>
+      <button type="submit" id="btnCifrar" class="btn">Cifrar</button>
     </div>
     
     <!-- Apartado de decifrar -->
@@ -65,10 +65,10 @@
         Ingrese el texto que desee descifrar:
       </p>
       <div>
-        <input class="label" type="text" placeholder="Texto a descifrar" required>
+        <input class="label" id="informacionDescifrar" type="text" placeholder="Texto a descifrar" required>
         <i class='bx bx-user'></i>
       </div>
-      <button type="submit" class="btn">Descifrar</button>
+      <button type="submit" id="btnDescifrar" class="btn">Descifrar</button>
     </div>
   </div>
 

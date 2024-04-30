@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     $informacionDescifrar = document.querySelector("#informacionDescifrar"),
     $resultadoDescifrar = document.querySelector("#resultadoDescifrar"),
     $btnDescifrar = document.querySelector("#btnDescifrar");
+    $btnLimpiarC = document.querySelector("#btnLimpiarC");
+    $btnLimpiarD = document.querySelector("#btnLimpiarD");
 
 
 const bufferABase64 = buffer => btoa(String.fromCharCode(...new Uint8Array(buffer)));
@@ -96,6 +98,16 @@ $btnDescifrar.onclick = async () => {
     }catch(e){
         $resultadoDescifrar.value = "Error descifrando: " + e.message + ". ¿Esta seguro que contraseña y texto son los correctos?"
     }
+};
+$btnLimpiarC.onclick = async () => {
+    document.getElementById("contraseñaCifrar").value="";
+    document.getElementById("informacionCifrar").value="";
+    document.getElementById("resultadoCifrar").value="";
+};
+$btnLimpiarD.onclick = async () => {
+    document.getElementById("contraseñaDescifrar").value="";
+    document.getElementById("informacionDescifrar").value="";
+    document.getElementById("resultadoDescifrar").value="";
 };
 
 });

@@ -74,11 +74,23 @@ const desencriptar = async (contraseña, encriptadoEnBase64) => {
 $btnCifrar.onclick = async () => {
     const contraseña = $contraseñaCifrar.value;
     if(!contraseña){
-        return alert("Es necesaria una contraseña para el cifrado");
+        Swal.fire({
+            title: 'Error!',
+            text: 'No se encontró una contraseña para el cifrado',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          });
+        return;
     }
     const textoPlano = $informacionCifrar.value;
     if(!textoPlano){
-        return alert("No hay ningún texto para cifrar");
+        Swal.fire({
+            title: 'Error!',
+            text: 'No se encontró un texto para el cifrado',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          });
+        return;
     }
     const cifrado = await encriptar(contraseña, textoPlano);
     $resultadoCifrar.value = cifrado;
@@ -86,17 +98,29 @@ $btnCifrar.onclick = async () => {
 $btnDescifrar.onclick = async () => {
     const contraseña = $contraseñaDescifrar.value;
     if(!contraseña){
-        return alert("Es necesaria la correspondiente contraseña para el descifrado");
+        Swal.fire({
+            title: 'Error!',
+            text: 'No se encontró una contraseña para el descifrado',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          });
+        return;  
     }
     const textoCifradoBase64 = $informacionDescifrar.value;
     if(!textoCifradoBase64){
-        return alert("No hay ningun texto de base64 para descifrar");
+        Swal.fire({
+            title: 'Error!',
+            text: 'No se encontró un texto para el descifrado',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          });
+        return;
     }
     try{
         const desencriptado = await desencriptar(contraseña, textoCifradoBase64);
         $resultadoDescifrar.value = desencriptado;
     }catch(e){
-        $resultadoDescifrar.value = "Error descifrando: " + e.message + ". ¿Esta seguro que contraseña y texto son los correctos?"
+        $resultadoDescifrar.value = "Error descifrando! " + "¿Está seguro que contraseña y texto son los correctos?"
     }
 };
 $btnLimpiarC.onclick = async () => {

@@ -5,6 +5,8 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import { methods as autentication } from "./controllers/autentication.controller.js";
 
+import { getUsuario, getUsuarios, createUsuario } from "./database/Conexion.js";
+
 //Server
 const app = express();
 const port= 3000;
@@ -29,5 +31,29 @@ app.get("/register",(req,res)=> {
 app.get("/inicio",(req,res)=> {
     res.sendFile(__dirname +"/public/pages/admin/inicio.html")
 });
+app.get("/usuarios", async (req, res) => {
+    const usuarios = await getUsuarios()
+    res.send(usuarios)
+});
+app.get("/usuarios/:id", async (req, res) => {
+    const id = req.params.id
+    const usuario = await getUsuario(id)
+    res.send(usuario)
+});
+
+//
 app.post("/api/login", autentication.register);
 app.post("/api/register", autentication.register);
+
+app.post("/usuarios", async (req, res) => {
+    const { nombres, apellidos, correo, contraseña } = req.body
+    const usuario = await createUsuario(nombres, apellidos, correo, contraseña)
+    res.status(201).send(usuario)
+});
+
+
+//Errores
+app.use((err, req, res, next) => { 
+    console.error(err.stack)
+    res.status(500).send('Algo va mal')
+})

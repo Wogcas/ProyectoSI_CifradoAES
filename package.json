@@ -46,6 +46,7 @@
     "minimatch": "^3.1.2",
     "ms": "^2.0.0",
     "mysql": "^2.18.1",
+    "mysql2": "^3.9.7",
     "negotiator": "^0.6.3",
     "object-inspect": "^1.13.1",
     "on-finished": "^2.4.1",
@@ -79,7 +80,7 @@
     "vary": "^1.1.2"
   },
   "scripts": {
-    "dev": "nodemon --exec node app/index.js"
+    "dev": "npx nodemon index.js"
   },
   "keywords": [],
   "author": "",

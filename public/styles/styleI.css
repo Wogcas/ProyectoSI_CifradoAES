@@ -16,11 +16,7 @@ header {
     /* ESTO ES PARA PONER UN ESPACIO ENTRE EL HEADER Y EL FOOTER */
 }
 
-/* Diseño del titlo de la pagina */
-.logo {
-    margin: 0;
-    color: white;
-}
+
 
 /* Elaces */
 nav ul {
@@ -69,8 +65,15 @@ footer {
     color: blue;
 }
 
+/* Diseño del titlo de la pagina */
 .logo {
+    margin: 0;
+    color: white;
     cursor: pointer;
+}
+
+.logo :hover{
+    color: #3c025d;
 }
 
 .nav__links {

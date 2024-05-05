@@ -123,6 +123,7 @@ $btnDescifrar.onclick = async () => {
         $resultadoDescifrar.value = "Error descifrando! " + "¿Está seguro que contraseña y texto son los correctos?"
     }
 };
+
 $btnLimpiarC.onclick = async () => {
     document.getElementById("contraseñaCifrar").value="";
     document.getElementById("informacionCifrar").value="";

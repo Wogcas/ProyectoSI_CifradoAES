@@ -22,19 +22,23 @@ app.use(express.static("public"));
 app.use(express.json());
 
 //Rutas
-app.get("/",(req,res)=> {
+app.get("/",(req,res) => {
     res.sendFile(__dirname +"/public/pages/login.html")
 });
-app.get("/register",(req,res)=> {
+
+app.get("/register",(req,res) => {
     res.sendFile(__dirname +"/public/pages/register.html")
 });
-app.get("/inicio",(req,res)=> {
-    res.sendFile(__dirname +"/public/pages/admin/inicio.html")
+
+app.get("/inicio",(req,res) => {
+    res.sendFile(__dirname + "/public/pages/admin/inicio.html")
 });
+
 app.get("/usuarios", async (req, res) => {
     const usuarios = await getUsuarios()
     res.send(usuarios)
 });
+
 app.get("/usuarios/:id", async (req, res) => {
     const id = req.params.id
     const usuario = await getUsuario(id)

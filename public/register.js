@@ -1,3 +1,6 @@
+const mensajeError = document.getElementsByClassName("error")[0];
+
+
 document.getElementById("form-registro").addEventListener("submit", async(e) => {
     e.preventDefault();
     console.log(e.target.children.nombres.value);
@@ -14,4 +17,9 @@ document.getElementById("form-registro").addEventListener("submit", async(e) => 
         })
 
     });
+    if(!res.ok)return mensajeError.classList.toggle("escondido",false);
+    const resJson = await res.json();
+    if(resJson.redirect){
+        window.location.href = resJson.redirect;
+    }
 });

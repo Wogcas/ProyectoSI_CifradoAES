@@ -28,5 +28,5 @@ export async function createUsuario(nombres, apellidos, correo, contraseña){
   return getUsuario(id)
 }
 
-const result = await createUsuario('Jose','Lopez','maria@gmail.com','maria123')
-console.log(result)
+//const result = await createUsuario('Jose','Lopez','maria@gmail.com','maria123')
+//console.log(result)

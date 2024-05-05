@@ -23,15 +23,20 @@ async function register(req, res){
     const correo = req.body.correo;
     const contraseña = req.body.contraseña;
     if(!nombres || !apellidos || !correo || !contraseña){
-        res.status(400).send({status:"Error",message:"Los campos estan incorrectos."});
+        return res.status(400).send({status:"Error",message:"Los campos estan incorrectos."});
     }
     const usuarioRevisar = usuarios.find(usuario => usuario.nombres === nombres)
     if(usuarioRevisar){
-        res.status(400).send({status: "Error", message: "Este usuario ya existe."});
+        return res.status(400).send({status: "Error", message: "Este usuario ya existe."});
     }
-    const salt = bcryptjs.salt(5);
+    const salt = await bcryptjs.genSalt(5);
     const hashPassword = await bcryptjs.hash(contraseña,salt);
-    //const nuevo 
+    const nuevoUsuario = {
+        nombres, apellidos, correo, hashPassword
+    } 
+    usuarios.push(nuevoUsuario);
+    console.log(usuarios);
+    return res.status(201).send({status:"ok", message: `Usuario ${nuevoUsuario.nombres} agregado`,redirect:"/"})
 }
 
 export const methods = {

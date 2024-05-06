@@ -17,7 +17,7 @@ document.getElementById("form-registro").addEventListener("submit", async(e) => 
         })
     });
 //    if(!res.ok)return mensajeError.classList.toggle("escondido",false);
-//    const resJson = await res.json();
+    const resJson = await res.json();
     if(resJson.redirect){
         window.location.href = resJson.redirect;
     }else {

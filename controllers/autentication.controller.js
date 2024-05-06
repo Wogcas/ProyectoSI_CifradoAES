@@ -12,20 +12,10 @@ const usuarios = [{
 async function login(req,res){
     console.log(req.body);
     const nombres = req.body.nombres;
-    const contraseña = req.body.contraseña; 
-    if (!nombres || !contraseña) {
-        return res.status(400).send({ status: "Error", message: "Los campos están incorrectos." });
+    const contraseña = req.body.contraseña;
+    if(!nombres || !contraseña){
+        res.status(400).send({status: "Error", message: "Los campos estan incorrectos."});
     }
-    const usuarioRevisar = usuarios.find(usuario => usuario.nombres === nombres);
-    if (!usuarioRevisar) {
-        return res.status(400).send({ status: "Error", message: "Error durante el login." });
-    }
-    const loginCorrecto = await bcryptjs.compare(contraseña, usuarioRevisar.contraseña); 
-    if (!loginCorrecto) {
-        return res.status(400).send({ status: "Error", message: "Contraseña incorrecta." });
-    }
-    
-    res.status(201).send({ status: "Success", message: "Inicio de sesión exitoso.", redirect: "/" });
 }
 
 async function register(req, res) {
@@ -63,4 +53,4 @@ async function register(req, res) {
 export const methods = {
     login,
     register
-};
+}

@@ -50,7 +50,6 @@ const encriptar = async(contraseña, textoPlano) => {
         clave,
         bufferTextoPLano
     );
-    
 return bufferABase64([
         ...sal,
         ...vectorInicializacion,

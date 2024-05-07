@@ -10,33 +10,4 @@ const pool = mysql.createPool({
       database: process.env.MYSQL_DATABASE
 }).promise()
 
-export async function getUsuarios(){ 
-  const rows = await pool.query("SELECT * FROM usuarios");
-  return rows
-  
-}
-
-export async function getUsuario(id){
-  const [rows] = await pool.query(`SELECT * FROM usuarios WHERE id = ?`, [id])
-  return rows[0]
-}
-
-
-export async function createUsuario(nombres, apellidos, correo, contraseña){
-  const [result] = await pool.query(`INSERT INTO usuarios (nombres, apellidos, correo, contraseña) VALUES (?, ?, ?, ?)`, [nombres, apellidos, correo, contraseña]);
-  const id = result.insertId
-  return getUsuario(id)
-}
-
-export async function getUsuarioByEmail(correo) {
-  try {
-      const [rows] = await pool.query(`SELECT * FROM usuarios WHERE correo = ?`, [correo]);
-      return rows[0];
-  } catch (error) {
-      console.error("Error al obtener el usuario por correo electrónico:", error);
-      throw error;
-  }
-}
-
-//const result = await createUsuario('Jose','Lopez','maria@gmail.com','maria123')
-//console.log(result)
+export default pool;

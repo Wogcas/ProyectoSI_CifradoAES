@@ -5,7 +5,8 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import { methods as autentication } from "./controllers/autentication.controller.js";
 
-import { getUsuario, getUsuarios, createUsuario, getUsuarioByEmail } from "./database/Conexion.js";
+import UsuariosDAO from "./database/UsuariosDAO.js";
+const usuariosDAO = new UsuariosDAO();
 
 //Server
 const app = express();
@@ -45,7 +46,7 @@ app.get("/usuarios", async (req, res) => {
 
 app.get("/usuarios/:id", async (req, res) => {
     const id = req.params.id
-    const usuario = await getUsuario(id)
+    const usuario = await usuariosDAO.getUsuario(id)
     res.send(usuario)
 });
 
@@ -54,13 +55,13 @@ app.post("/api/login", autentication.login);
 app.post("/api/register", autentication.register);
 
 app.get("/usuarios", async (req, res) => {
-    const usuarios = await getUsuarios()
+    const usuarios = await usuariosDAO.getUsuarios()
     res.send(usuarios)
 });
 
 app.post("/usuarios", async (req, res) => {
     const { nombres, apellidos, correo, contraseña } = req.body
-    const usuario = await createUsuario(nombres, apellidos, correo, contraseña)
+    const usuario = await usuariosDAO.createUsuario(nombres, apellidos, correo, contraseña)
     res.status(201).send(usuario)
 });
 

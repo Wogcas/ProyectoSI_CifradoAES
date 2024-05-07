@@ -1,12 +1,6 @@
 import bcryptjs from "bcryptjs";
-import {getUsuario, createUsuario} from "../database/Conexion.js"
-
-// const usuarios = [{
-//     nombres: "Oasdas",
-//     apellidos: "asdsa",
-//     correo: "asffo@gmail.com",
-//     contraseña: "ods"
-// }];
+import UsuariosDAO from "../database/UsuariosDAO.js";
+const usuariosDAO = new UsuariosDAO();
 
 async function login(req,res){
     console.log(req.body);
@@ -26,20 +20,16 @@ async function register(req, res){
     if(!nombres || !apellidos || !correo || !contraseña){
         return res.status(400).send({status:"Error",message:"Los campos estan incorrectos."});
     }
-    
-    // const usuarioRevisar = usuarios.find(usuario => usuario.nombres === nombres)
-    // if(usuarioRevisar){
-    //     return res.status(400).send({status: "Error", message: "Este usuario ya existe."});
-    // }
+    const usuarioRevisar = await usuariosDAO.getUsuarioByEmail(correo)
+    if(usuarioRevisar){
+        return res.status(400).send({status: "Error", message: "Este usuario ya existe."});
+    }
     const salt = await bcryptjs.genSalt(5);
     const hashPassword = await bcryptjs.hash(contraseña,salt);
-    //const nuevo 
     const nuevoUsuario = {
         nombres, apellidos, correo, hashPassword
     } 
-    // usuarios.push(nuevoUsuario);
-    // console.log(usuarios);
-    const usuario = await createUsuario(nombres, apellidos, correo, hashPassword)
+    const usuario = await usuariosDAO.createUsuario(nombres, apellidos, correo, hashPassword)
     return res.status(201).send({status:"ok", message: `Usuario ${usuario.nombres} agregado`,redirect:"/"})
 }
 
@@ -47,3 +37,10 @@ export const methods = {
     login,
     register
 }
+
+// const usuarios = [{
+//     nombres: "Oasdas",
+//     apellidos: "asdsa",
+//     correo: "asffo@gmail.com",
+//     contraseña: "ods"
+// }];

@@ -1,4 +1,4 @@
-//const mensajeError = document.getElementsByClassName("error")[0];
+const mensajeError = document.getElementsByClassName("error")[0];
 
 
 document.getElementById("form-registro").addEventListener("submit", async(e) => {
@@ -16,7 +16,7 @@ document.getElementById("form-registro").addEventListener("submit", async(e) => 
             contraseña: e.target.elements["contraseña"].value
         })
     });
-//    if(!res.ok)return mensajeError.classList.toggle("escondido",false);
+    if(!res.ok)return mensajeError.classList.toggle("hidden",false);
     const resJson = await res.json();
     if(resJson.redirect){
         window.location.href = resJson.redirect;

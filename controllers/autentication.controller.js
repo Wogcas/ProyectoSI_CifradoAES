@@ -1,19 +1,31 @@
-import bcryptjs from "bcryptjs";
 import UsuariosDAO from "../database/UsuariosDAO.js";
+import jsonwebtoken from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
 const usuariosDAO = new UsuariosDAO();
 
-async function login(req,res){
+async function login(req, res){
     console.log(req.body);
-    const nombres = req.body.nombres;
+    const correo = req.body.correo;
     const contraseña = req.body.contraseña;
-    if(!nombres || !contraseña){
-        res.status(400).send({status: "Error", message: "Los campos estan incorrectos."});
+    const usuarioRevisar = await usuariosDAO.getUsuarioByEmail(correo, contraseña);
+    if(!usuarioRevisar){
+        console.log("entro2")
+        return res.status(400).send({status: "Error", message: "Error durante el login."});
     }
-    if (!usuarioExistente) {
-        return res.status(400).send({ status: "Error", message: "Error durante el login" });
+    const token = jsonwebtoken.sign(
+        {correo:usuarioRevisar.correo}, 
+        process.env.JWT_SECRET, 
+        {expiresIn:process.env.JWT_EXPIRATION});
+
+    const cookieOption = {
+        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
+        path: "/"
     }
-    const loginCorrecto = await bcryptjs.compare(contraseña,usuarioExistente);
-    console.log(loginCorrecto);
+    res.cookie("jwt",token,cookieOption);
+    console.log("entro4")
+    return res.status(201).send({ status: "ok", message: `Sesión iniciada`, redirect: "/inicio" });
 }
 
 async function register(req, res){
@@ -25,16 +37,12 @@ async function register(req, res){
     if(!nombres || !apellidos || !correo || !contraseña){
         return res.status(400).send({status:"Error",message:"Los campos estan incorrectos."});
     }
-    const usuarioRevisar = await usuariosDAO.getUsuarioByEmail(correo)
+    const usuarioRevisar = await usuariosDAO.existeUsuario(correo)
     if(usuarioRevisar){
         return res.status(400).send({status: "Error", message: "Este usuario ya existe."});
     }
-    const salt = await bcryptjs.genSalt(5);
-    const hashPassword = await bcryptjs.hash(contraseña,salt);
-    const nuevoUsuario = {
-        nombres, apellidos, correo, hashPassword
-    } 
-    const usuario = await usuariosDAO.createUsuario(nombres, apellidos, correo, hashPassword)
+     
+    const usuario = await usuariosDAO.createUsuario(nombres, apellidos, correo, contraseña)
     return res.status(201).send({status:"ok", message: `Usuario ${usuario.nombres} agregado`,redirect:"/"})
 }
 

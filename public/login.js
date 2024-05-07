@@ -1,23 +1,30 @@
-const mensajeError = document.getElementById("error")[1];
+const mensajeError = document.getElementsByClassName("error")[0];
+const correo = document.getElementById("correo");
+const contraseña = document.getElementById("contraseña");
 
+document.getElementById("form-login").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const body = {
+        correo: correo.value,
+        contraseña: contraseña.value
+    };
+    
+    fetch("/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body) 
+   }).then(res => {
+        if(res.ok){
+            window.location.href = "/inicio";
+        }else{
+            return mensajeError.classList.toggle("hidden", false);
+        }
 
-document.getElementById("login-form").addEventListener("submit", async(e) => {
-   e.preventDefault();
-   const nombres = e.target.children.nombres.value;
-   const contraseña = e.target.children.contraseña.value
-
-   const res = await fetch("http://localhost:3000/api/login", {
-    method: "POST",
-    headers:{
-        "Content-Type":"application/json"
-    },
-    body: JSON.stringify({
-        nombres,contraseña
-    })
+   }).catch(err =>{
+    alert("Hubo un error en el sistema")
    });
-   if(!res.ok) return mensajeError.classList.toggle("escondido", false)
-    const resJson = await res.json();
-if(resJson.redirect){
-    window.location.href = resJson.redirect;
-}
-})
+
+  
+});

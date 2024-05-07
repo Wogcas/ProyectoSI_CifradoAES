@@ -11,4 +11,7 @@ const pool = mysql.createPool({
 }).promise()
 
 export const database = process.env.MYSQL_DATABASE;
+export const host = process.env.MYSQL_HOST;
+export const password = process.env.MYSQL_PASSWORD;
+export const user = process.env.MYSQL_USER;
 export default pool;

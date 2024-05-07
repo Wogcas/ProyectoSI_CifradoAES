@@ -75,3 +75,11 @@ body {
     font-weight: 600;
 }
 
+.error{
+    color: red;
+    text-align: center;
+}
+
+.hidden{
+    display: none;
+}

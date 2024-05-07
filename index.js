@@ -6,7 +6,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import { methods as autentiaucation } from "./controllers/autentication.controller.js";
 import { methods as authorization } from "./middlewares/authorization.js";
 
-import { usuariosDAO } from "./database/UsuariosDAO.js";
+import UsuariosDAO from "./database/UsuariosDAO.js";
+const usuariosDAO = new UsuariosDAO();
 
 //Server
 const app = express();
@@ -45,28 +46,25 @@ app.get("/usuarios", async (req, res) => {
 });
 
 app.get("/usuarios/:id", async (req, res) => {
-    const id = req.params.id;
-    try {
-        const usuario = await usuariosDAO.getUsuario(id);
-        res.send(usuario);
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
+    const id = req.params.id
+    const usuario = await usuariosDAO.getUsuario(id)
+    res.send(usuario)
 });
 
 //
 app.post("/api/login", autentication.login);
 app.post("/api/register", autentication.register);
 
-//app.post("/usuarios", async (req, res) => {
-//    const { nombres, apellidos, correo, contraseña } = req.body;
-//    try {
-//        const usuario = await usuariosDAO.createUsuario(nombres, apellidos, correo, contraseña);
-//        res.status(201).send(usuario);
-//    } catch (error) {
-//        res.status(500).send(error.message);
-//    }
-//});
+app.get("/usuarios", async (req, res) => {
+    const usuarios = await usuariosDAO.getUsuarios()
+    res.send(usuarios)
+});
+
+app.post("/usuarios", async (req, res) => {
+    const { nombres, apellidos, correo, contraseña } = req.body
+    const usuario = await usuariosDAO.createUsuario(nombres, apellidos, correo, contraseña)
+    res.status(201).send(usuario)
+});
 
 
 //Errores

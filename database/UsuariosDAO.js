@@ -1,34 +1,49 @@
-import Conexion from "./Conexion.js";
+import pool from "./Conexion.js";
 
 class UsuariosDAO{
-
-  constructor(){
-    this.Conexion=new Conexion();
+ 
+  async getUsuarios(){ 
+    try{
+      const rows = await pool.query("SELECT * FROM usuarios");
+    return rows;
+  } catch(error){
+      console.error("Error al obtener usuarios:", error);
+      throw error;
+    }
   }
-
-  async getUsuarios() {
-    return await this.Conexion.ejecutarConsulta("SELECT * FROM usuarios");
-  }
-
-  async getUsuario(id) {
-    return await this.Conexion.ejecutarConsulta("SELECT * FROM usuarios WHERE id = ?", [id]);
-  }
-
-  async createUsuario(nombres, apellidos, correo, contraseña) {
-    const sql = "INSERT INTO usuarios (nombres, apellidos, correo, contraseña) VALUES (?, ?, ?, ?)";
-    const result = await this.Conexion.ejecutarConsulta(sql, [nombres, apellidos, correo, contraseña]);
-    const id = result.insertId;
-    return await this.getUsuario(id);
-  }
-
-  async getUsuarioPorCorreo(correo) {
-    const sql = "SELECT * FROM usuarios WHERE correo = ?";
-    return await this.Conexion.ejecutarConsulta(sql, [correo]);
-}
+    
   
-  //const result = await createUsuario('Jose','Lopez','maria@gmail.com','maria123')
-  //console.log(result)
+  async getUsuario(id){
+    try{
+    const [rows] = await pool.query(`SELECT * FROM usuarios WHERE id = ?`, [id])
+    return rows[0];
+  } catch (error){
+      console.error("Error al obtener usuario por ID:", error);
+      throw error;
+    }
+  }
+  
+  
+  async createUsuario(nombres, apellidos, correo, contraseña){
+    try{
+    const [result] = await pool.query(`INSERT INTO usuarios (nombres, apellidos, correo, contraseña) VALUES (?, ?, ?, ?)`, [nombres, apellidos, correo, contraseña]);
+    const id = result.insertId
+    return this.getUsuario(id)
+  } catch (error){
+      console.error("Error al crear usuario:", error);
+      throw error;
+    }
+  }
+  
+  async getUsuarioByEmail(correo) {
+    try {
+        const [rows] = await pool.query(`SELECT * FROM usuarios WHERE correo = ?`, [correo]);
+        return rows[0];
+    } catch (error) {
+        console.error("Error al obtener el usuario por correo electrónico:", error);
+        throw error;
+    }
+  }
+} 
 
-}
-
-export const usuariosDAO = new UsuariosDAO();
+export default UsuariosDAO;

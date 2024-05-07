@@ -3,7 +3,8 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-import { methods as autentication } from "./controllers/autentication.controller.js";
+import { methods as autentiaucation } from "./controllers/autentication.controller.js";
+import { methods as authorization } from "./middlewares/authorization.js";
 
 import { usuariosDAO } from "./database/UsuariosDAO.js";
 
@@ -22,15 +23,15 @@ app.use(express.static("public"));
 app.use(express.json());
 
 //Rutas
-app.get("/",(req,res) => {
+app.get("/",authorization.soloPublico,(req,res) => {
     res.sendFile(__dirname +"/public/pages/login.html")
 });
 
-app.get("/register",(req,res) => {
+app.get("/register",authorization.soloPublico,(req,res) => {
     res.sendFile(__dirname +"/public/pages/register.html")
 });
 
-app.get("/inicio",(req,res) => {
+app.get("/inicio",authorization.soloAdmin,(req,res) => {
     res.sendFile(__dirname + "/public/pages/admin/inicio.html")
 });
 

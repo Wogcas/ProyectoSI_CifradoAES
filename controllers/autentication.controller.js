@@ -1,8 +1,10 @@
 import bcryptjs from "bcryptjs";
+import jsonewbtoken from "jsonewbtoken";
+import dotenv from "dotenv";
 
 import { usuariosDAO } from "../database/UsuariosDAO.js";
 
-const usuarios = [{
+export const usuarios = [{
     nombres: "Oli",
     apellidos: "IV",
     correo: "olivio@ct.com",
@@ -16,6 +18,11 @@ async function login(req,res){
     if(!nombres || !contraseña){
         res.status(400).send({status: "Error", message: "Los campos estan incorrectos."});
     }
+    if (!usuarioExistente) {
+        return res.status(400).send({ status: "Error", message: "Error durante el login" });
+    }
+    const loginCorrecto = await bcryptjs.compare(contraseña,usuarioExistente);
+    console.log(loginCorrecto);
 }
 
 async function register(req, res) {

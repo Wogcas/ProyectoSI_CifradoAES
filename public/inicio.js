@@ -8,10 +8,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     $contraseñaDescifrar = document.querySelector("#contraseñaDescifrar"),
     $informacionDescifrar = document.querySelector("#informacionDescifrar"),
     $resultadoDescifrar = document.querySelector("#resultadoDescifrar"),
-    $btnDescifrar = document.querySelector("#btnDescifrar");
-    $btnLimpiarC = document.querySelector("#btnLimpiarC");
-    $btnLimpiarD = document.querySelector("#btnLimpiarD");
-    $btnCerrarSesion = document.querySelector('header button');
+    $btnDescifrar = document.querySelector("#btnDescifrar"),
+    $btnLimpiarC = document.querySelector("#btnLimpiarC"),
+    $btnLimpiarD = document.querySelector("#btnLimpiarD"),
+    $btnCerrarSesion = document.querySelector('#cerrar');
 
 const bufferABase64 = buffer => btoa(String.fromCharCode(...new Uint8Array(buffer)));
 const base64ABuffer = buffer => Uint8Array.from(atob(buffer), c => c.charCodeAt(0));
@@ -135,6 +135,7 @@ $btnLimpiarD.onclick = async () => {
     document.getElementById("informacionDescifrar").value="";
     document.getElementById("resultadoDescifrar").value="";
 };
+
 $btnCerrarSesion.addEventListener("click", () => {
     // Eliminar la cookie de sesión
     document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';

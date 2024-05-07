@@ -12,7 +12,6 @@ async function login(req, res){
     const contraseña = req.body.contraseña;
     const usuarioRevisar = await usuariosDAO.getUsuarioByEmail(correo, contraseña);
     if(!usuarioRevisar){
-        console.log("entro2")
         return res.status(400).send({status: "Error", message: "Error durante el login."});
     }
     const token = jsonwebtoken.sign(
@@ -25,7 +24,6 @@ async function login(req, res){
         path: "/"
     }
     res.cookie("jwt",token,cookieOption);
-    console.log("entro4")
     return res.status(201).send({ status: "ok", message: `Sesión iniciada`, redirect: "/inicio" });
 }
 
@@ -51,10 +49,3 @@ export const methods = {
     login,
     register
 }
-
-// const usuarios = [{
-//     nombres: "Oasdas",
-//     apellidos: "asdsa",
-//     correo: "asffo@gmail.com",
-//     contraseña: "ods"
-// }];

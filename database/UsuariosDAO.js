@@ -47,7 +47,7 @@ class UsuariosDAO{
         if(contraseñaDesencriptada == contraseña){
           return rows[0];
         } else{
-          throw new Error("Los datos no coinciden");
+          return null;
         }
         
     } catch (error) {

@@ -21,7 +21,7 @@ async function soloPublico(req, res, next) {
     try {
         const log = await revisarCookie(req);
         if (!log) return next();
-        return res.redirect("/admin");
+        return res.redirect("/inicio");
     } catch (error) {
         console.error(error);
         return res.status(500).send("Error interno del servidor");

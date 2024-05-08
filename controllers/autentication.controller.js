@@ -15,7 +15,7 @@ async function login(req, res){
         return res.status(400).send({status: "Error", message: "Error durante el login."});
     }
     const token = jsonwebtoken.sign(
-        {user:usuarioRevisar}, 
+        {correo:usuarioRevisar.correo}, 
         process.env.JWT_SECRET, 
         {expiresIn:process.env.JWT_EXPIRATION});
 
@@ -24,7 +24,7 @@ async function login(req, res){
         path: "/"
     }
     res.cookie("jwt",token,cookieOption);
-    return res.status(201).send({ status: "ok", message: `Sesión iniciada`, redirect: "/inicio" });
+    return res.status(201).send({ status: "ok", message: "Sesión iniciada", redirect: "/inicio" });
 }
 
 async function register(req, res){

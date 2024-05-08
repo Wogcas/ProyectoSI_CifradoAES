@@ -32,15 +32,7 @@ async function revisarCookie(req){
     if (!req.headers.cookie) {
         return false; // No hay cookies definidas en la solicitud
     }
-    const jwtCookie = req.headers.cookie.split("; ").find(cookie => cookie.startsWith("jwt="));
-
-    if (!jwtCookie) {
-    // Si no se encontró ninguna cookie jwt, devuelve un valor por defecto o maneja el caso según lo necesites
-        return false;
-    }
-
-// Si se encontró la cookie jwt, entonces procede a realizar el slice()
-    const cookieJWT = jwtCookie.slice(4);
+    const cookieJWT = req.headers.cookie.split("; ").find(cookie => cookie.startsWith("jwt=")).slice(4);
     const decodificado = jsonwebtoken.verify(cookieJWT, process.env.JWT_SECRET);
     console.log(decodificado)
 

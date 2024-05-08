@@ -17,13 +17,14 @@ document.getElementById("form-login").addEventListener("submit", (e) => {
         body: JSON.stringify(body) 
    }).then(res => {
         if(res.ok){
+            console.log("ENTRO AQUI") ;
             window.location.href = "/inicio";
         }else{
             return mensajeError.classList.toggle("hidden", false);
         }
 
    }).catch(err =>{
-    alert("Hubo un error en el sistema")
+        alert("Hubo un error en el sistema")
    });
 
   

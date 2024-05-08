@@ -9,14 +9,14 @@ import bodyParser from "body-parser";
  import { methods as authorization } from "./middlewares/authorization.js";
 
 import UsuariosDAO from "./database/UsuariosDAO.js";
+import { PORT } from "./config.js";
 // const usuariosDAO = new UsuariosDAO();
 
 //Server
 const app = express();
-const port= 3000;
 
-app.listen(port, () => {
-    console.log(`Escuchando en puerto ${port}`);
+app.listen(PORT, () => {
+    console.log(`Escuchando en puerto ${PORT}`);
 });
 //console.log("Servidor corriendo en el puerto",app.get("port"))
 console.log(__dirname);

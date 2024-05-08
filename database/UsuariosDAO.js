@@ -41,15 +41,13 @@ class UsuariosDAO{
   
   async getUsuarioByEmail(correo, contraseña) {
     try {
-        const [rows] = await pool.query(`SELECT * FROM usuarios WHERE correo = ?`, [correo]);
+        const [rows] = await pool.query(`SELECT * FROM usuarios WHERE correo = ?`, correo);
         console.log(rows[0])
         const contraseñaDesencriptada = desencriptarAES(rows[0].contraseña);
         console.log(contraseñaDesencriptada == contraseña) ;
         if(contraseñaDesencriptada == contraseña){
-          console.log("ENTRO 1") ;
           return rows[0];
         } else{
-          console.log("ENTRO 2") ;
           return null;
         }
         

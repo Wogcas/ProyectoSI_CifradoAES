@@ -29,7 +29,7 @@ async function soloPublico(req, res, next) {
 }
 
 async function revisarCookie(req){
-    if (!req.headers.cookie) {
+    if (req.headers.cookie == undefined || req.headers.cookie == undefined || req.headers.cookie == null) {
         return false; // No hay cookies definidas en la solicitud
     }
     const cookieJWT = req.headers.cookie.split("; ").find(cookie => cookie.startsWith("jwt=")).slice(4);

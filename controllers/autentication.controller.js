@@ -15,7 +15,7 @@ async function login(req, res){
         return res.status(400).send({status: "Error", message: "Error durante el login."});
     }
     const token = jsonwebtoken.sign(
-        {correo:usuarioRevisar.correo}, 
+        {user:usuarioRevisar}, 
         process.env.JWT_SECRET, 
         {expiresIn:process.env.JWT_EXPIRATION});
 
